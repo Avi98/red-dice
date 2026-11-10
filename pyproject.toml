@@ -1,0 +1,28 @@
+[project]
+name = "redis-event-loop"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = []
+
+[project.scripts]
+redis-event-loop = "src:main"
+
+[dependency-groups]
+dev = ["pytest>=9.2.0", "ruff>=0.17.4", "ty>=0.0.100"]
+
+[tool.ruff]
+line-length = 88
+
+[tool.ruff.lint]
+select = ["E", "F", "I"]
+
+[tool.ty.rules]
+import-not-found = "ignore"
+unused-ignore-comment = "warn"
+possibly-unresolved-reference = "error"
+
+[[tool.ty.overrides]]
+include = ["src/legacy/**"]
+rules = { unresolved-attribute = "ignore", invalid-assignment = "ignore" }
