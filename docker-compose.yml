@@ -1,0 +1,10 @@
+services:
+  redis-event-loop:
+    build: .
+    image: redis-event-loop:0.1.0
+    ports:
+      - "3001:3001"
+    environment:
+      HOST: 0.0.0.0
+      PORT: "3001"
+    restart: unless-stopped

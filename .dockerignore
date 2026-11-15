@@ -1,0 +1,30 @@
+# VCS
+.git/
+.gitignore
+
+# Python environments & artifacts
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+
+# Tool caches
+.ruff_cache/
+.ty_cache/
+.pytest_cache/
+
+# Secrets
+.env
+.env.local
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+
+# Docker
+Dockerfile
+docker-compose.yml
+.dockerignore
