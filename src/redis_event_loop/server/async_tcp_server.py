@@ -13,7 +13,6 @@ class AsyncTcpServer:
     def start(self, host: str, port: str) -> None:
 
         server = self._create_listener(host, port)
-        conn, addr = server.accept()
 
         # kqueue on macOS/BSD, epoll on Linux — picked at runtime so the
         # same code runs natively and inside a Linux container.
@@ -34,11 +33,18 @@ class AsyncTcpServer:
         logging.info(f"{event_buff.fromfd}")
 
         if hasattr(event_buff, "control"):
-            event_buff.control([event_k], 0)
-
+            triggered_events = event_buff.control([event_k], 10)
         else:
-            # event_buff.
+            # get triggered events for epoll
             pass
+
+        for ev in triggered_events:
+            if ev.ident == server.fileno():
+                conn, addr = server.accept()
+                print(f"Accepted connection from {addr}")
+
+        event_buff.close()
+        server.close()
 
     def _create_listener(
         self, host: str = "0.0.0.0", port: str = "8080"

@@ -12,6 +12,13 @@ parsing / RESP protocol layer on top.
 > battle-tested for over a decade. This is a teaching codebase — it favors
 > clarity over speed.
 
+## Lessons
+
+Each concept gets a written lesson under [`docs/lessons/`](docs/lessons/), paired
+with the code that implements it:
+
+- [Lesson 1 — Socket programming: from file descriptor to listening server](docs/lessons/lesson-01-sockets.md)
+
 ## Why?
 
 Redis is one of the best codebases to learn network programming from. This
