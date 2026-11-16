@@ -35,8 +35,8 @@ poked, and rewritten without fighting C toolchains:
 Requires Python 3.12+ and [uv](https://docs.astral.sh/uv/).
 
 ```bash
-# install dependencies (dev group included) + the project itself, editable
-uv sync
+# full local setup: clean venv, install pinned Python, sync dependencies
+make local_startup
 
 # run the server
 uv run redis
