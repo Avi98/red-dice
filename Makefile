@@ -1,3 +1,5 @@
+PY_VERSION = 3.12
+
 clean_venv:
 	@echo "cleaning up"
 	rm -rf .venv
@@ -12,9 +14,14 @@ pin_python:
 
 install:
 	@echo "Installing python decencies"
-	uv env && uv sync --all-groups
+	uv venv && uv sync --all-groups
 
 local_startup:
 	@echo "Setup local env"
-	clean_venv install_python pin_python install
+	$(MAKE) clean_venv
+	$(MAKE) install_python
+	$(MAKE) pin_python
+	$(MAKE) install
 
+test:
+	pytest --cov just_one_sql
