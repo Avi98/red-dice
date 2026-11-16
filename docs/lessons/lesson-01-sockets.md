@@ -7,8 +7,8 @@
 ---
 
 ## 1. What a socket actually is
-
-A **socket is a file descriptor** — a plain integer the OS hands you — that represents
+**
+A **socket is a file descriptor** — a plain **integer the OS hands you — that represents
 one endpoint of a network connection. This is the single most important idea in all
 of network programming:
 
