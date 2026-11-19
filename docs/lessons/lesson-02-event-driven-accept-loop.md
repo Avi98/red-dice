@@ -111,10 +111,14 @@ Flow: create -> register -> **poll** -> unpack `(fd, mask)` -> check fd -> accep
 ## 4. Worked example — kqueue accept loop (from scratch)
 
 ```python
-import select
+import select, socket
 
 def start(host: str = "0.0.0.0", port: str = "8080") -> None:
-    server = ...  # socket/bind/listen/setblocking(False) as above
+    server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+    server.bind((host, int(port)))
+    server.listen(5)
+    server.setblocking(False)
 
     kq = select.kqueue()
     kev = select.kevent(

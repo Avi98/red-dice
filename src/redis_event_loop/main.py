@@ -9,7 +9,7 @@ def main() -> None:
 
     server.start(
         os.environ.get("HOST", "localhost"),
-        os.environ.get("PORT", "3001"),
+        int(os.environ.get("PORT", "3001")),
     )
 
 
